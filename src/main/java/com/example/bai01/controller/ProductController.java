@@ -31,7 +31,6 @@ public class ProductController {
 	@Autowired
 	ProductReponsitory productReponsitory;
 
-	// Lay danh sach san pham
 	@GetMapping("/product")
 	public List<Product> findAllProduct() {
 		List<Product> listProducts = new ArrayList<>();
@@ -45,19 +44,18 @@ public class ProductController {
 		return product;
 	}
 
-	// Lấy thong tin người dùng và product
 	@GetMapping("/orderproduct/{id}/{productId}")
 	public ResponseEntity<OrderReponsitory> orderProductByUser(@PathVariable Integer id,
 			@PathVariable Integer productId) {
 		OrderReponsitory orderReponsitory = new OrderReponsitory();
-		String url = "http://localhost:8086/api/v1/user/" + id;
+		String url = "http://localhost:8087/api/v1/user/" + id;
 		ResponseEntity<User> reponse = restTemplate.getForEntity(url, User.class);
 		Optional<Product> optional = productReponsitory.findById(productId);
 		Product product = null;
 		if (optional.isPresent()) {
 			product = optional.get();
 		} else {
-			new RuntimeException("Khong co user theo id này");
+			new RuntimeException("User didn't has this ID");
 		}
 		User user = reponse.getBody();
 		orderReponsitory.setUser(user);

@@ -13,7 +13,7 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
 	String productName;
-	float gia;
+	float price;
 
 	public int getId() {
 		return id;
@@ -31,19 +31,19 @@ public class Product {
 		this.productName = productName;
 	}
 
-	public float getGia() {
-		return gia;
+	public float getPrice() {
+		return price;
 	}
 
-	public void setGia(float gia) {
-		this.gia = gia;
+	public void setPrice(float price) {
+		this.price = price;
 	}
 
-	public Product(int id, String productName, float gia) {
+	public Product(int id, String productName, float price) {
 		super();
 		this.id = id;
 		this.productName = productName;
-		this.gia = gia;
+		this.price = price;
 	}
 
 	public Product() {
